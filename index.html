@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | EduSphere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.dataset.theme=localStorage.getItem('edusphere:theme')||'light'</script>
+</head>
+<body>
+<div class="login">
+ <section class="hero"><h1>🎓 EduSphere</h1><h2>Run your college smarter and faster.</h2>
+  <p>Students, teachers, attendance, results, fees and analytics, with an built-in AI assistant, all in one secure dashboard.</p>
+  <ul><li><i class="fa-solid fa-user-graduate"></i> Student &amp; teacher management</li><li><i class="fa-solid fa-chart-line"></i> Live analytics and reports</li><li><i class="fa-solid fa-wand-magic-sparkles"></i> AI insights and assistant</li><li><i class="fa-solid fa-shield-halved"></i> Supabase &amp; Google sign-in</li></ul></section>
+ <section class="box"><div class="card">
+  <div><h2>Welcome back 👋</h2><p class="dim">Sign in to continue</p></div>
+  <form id="loginForm" class="card" style="gap:14px">
+   <label>Email<input type="email" id="email" placeholder="you@college.edu" autocomplete="email" required></label>
+   <label>Password<div class="pw"><input type="password" id="password" placeholder="Your password" autocomplete="current-password" required><button type="button" class="icon" id="toggle" aria-label="Show or hide password"><i class="fa-solid fa-eye"></i></button></div></label>
+   <div class="row"><span></span><a href="#" id="forgot">Forgot password?</a></div>
+   <p id="msg" class="form-msg" role="status" aria-live="polite"></p>
+   <button class="btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button></form>
+  <div class="or">OR</div>
+  <button class="btn ghost" id="googleLogin" type="button"><i class="fa-brands fa-google"></i> Continue with Google</button>
+  <div class="hint" id="demo" hidden>Demo mode: admin@edusphere.com / admin123</div>
+ </div></section>
+</div>
+<script type="module" src="js/login.js"></script>
+</body>
+</html>
