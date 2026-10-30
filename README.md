@@ -78,7 +78,7 @@ Once you add screenshots, display them using:
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/SOMOP1291/COLLEGE-MANGEMENT-SYSTEM---EDUSPHERE.git
 ```
 
 Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual repository URL.
