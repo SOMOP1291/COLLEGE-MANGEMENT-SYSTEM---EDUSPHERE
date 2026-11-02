@@ -6,13 +6,18 @@ const home = () => location.origin + location.pathname.replace(/[^/]*$/, '');
 async function isAdmin(s) { const { data } = await s.rpc('is_admin'); return data === true; }
 
 export async function getUser() {
-  const { data: { session } } = await supabase.auth.getSession();
+  if (!cloud) {
+    const raw = localStorage.getItem('edusphere:user');
+    return raw ? JSON.parse(raw) : null;
+  }
+  const s = await sb();
+  const { data: { session } } = await s.auth.getSession();
   if (!session) return null;
   const u = session.user;
   return {
     id: u.id,
     email: u.email,
-    name: u.user_metadata?.full_name || u.user_metadata?.name || u.email.split('@')[0],
+    name: u.user_metadata?.full_name || u.user_metadata?.name || (u.email || 'Admin').split('@')[0],
     avatar: u.user_metadata?.avatar_url || null
   };
 }
