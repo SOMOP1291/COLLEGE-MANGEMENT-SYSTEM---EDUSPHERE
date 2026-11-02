@@ -6,11 +6,15 @@ const home = () => location.origin + location.pathname.replace(/[^/]*$/, '');
 async function isAdmin(s) { const { data } = await s.rpc('is_admin'); return data === true; }
 
 export async function getUser() {
-  if (!cloud) return JSON.parse(localStorage.getItem('edusphere:user') || 'null');
-  const s = await sb(), { data } = await s.auth.getSession(), u = data.session?.user;
-  if (!u) return null;
-  if (!(await isAdmin(s))) { await s.auth.signOut(); sessionStorage.setItem('edusphere:denied', '1'); return null; }
-  return { email: u.email, name: u.user_metadata?.full_name || u.email.split('@')[0] };
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return null;
+  const u = session.user;
+  return {
+    id: u.id,
+    email: u.email,
+    name: u.user_metadata?.full_name || u.user_metadata?.name || u.email.split('@')[0],
+    avatar: u.user_metadata?.avatar_url || null
+  };
 }
 export async function login(email, pw) {
   if (!cloud) {
